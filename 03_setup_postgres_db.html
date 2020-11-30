@@ -1,0 +1,832 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setup Postgres Database on Ubuntu VM &#8212; My Jupyter Book</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Overview of GCP and Provision Ubuntu VM" href="02_setup_ubuntu_vm_on_gcp.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">My Jupyter Book</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="setup_jupyterlab.html">
+   Setup Jupyter Lab
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_setup_ubuntu_vm_on_gcp.html">
+   Overview of GCP and Provision Ubuntu VM
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Setup Postgres Database on Ubuntu VM
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/03_setup_postgres_db.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03_setup_postgres_db.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#docker-cheat-sheet">
+   Docker - Cheat Sheet
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup-postgres-using-docker">
+   Setup Postgres using Docker
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accessing-postgres-using-docker-cli">
+   Accessing Postgres using Docker CLI
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-database-and-user">
+   Create Database and User
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#executing-sql-scripts">
+   Executing SQL Scripts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup-sql-workbench">
+   Setup SQL Workbench
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql-workbench-and-postgres">
+   SQL Workbench and Postgres
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#postgres-on-docker">
+     Postgres on Docker
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql-workbench-features">
+   SQL Workbench Features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#troubleshooting-issues">
+   Troubleshooting Issues
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-lab-and-postgresql">
+   Jupyter Lab and Postgresql
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="setup-postgres-database-on-ubuntu-vm">
+<h1>Setup Postgres Database on Ubuntu VM<a class="headerlink" href="#setup-postgres-database-on-ubuntu-vm" title="Permalink to this headline">¶</a></h1>
+<p>Let us understand how to setup Postgres on Ubuntu VM. We will use Docker to set it up.</p>
+<ul class="simple">
+<li><p>Docker - Cheat Sheet</p></li>
+<li><p>Setup Postgres using Docker</p></li>
+<li><p>Accessing Postgres using Docker CLI</p></li>
+<li><p>Create Database and User</p></li>
+<li><p>Executing SQL Scripts</p></li>
+<li><p>Setup SQL Workbench</p></li>
+<li><p>SQL Workbench and Postgres</p></li>
+<li><p>SQL Workbench Features</p></li>
+<li><p>Troubleshooting Issues</p></li>
+</ul>
+<div class="section" id="docker-cheat-sheet">
+<h2>Docker - Cheat Sheet<a class="headerlink" href="#docker-cheat-sheet" title="Permalink to this headline">¶</a></h2>
+<p>As we have successfully setup Docker on our VM, let us go through some of the important commands related to docker.</p>
+<p>Here are the steps involved in setting up Database Services such as Postgres using Docker:</p>
+<ul class="simple">
+<li><p>Pull postgres image</p></li>
+<li><p>Create container for postgres</p></li>
+<li><p>Start the container</p></li>
+<li><p>Review the logs to ensure that container is created with out any issues</p></li>
+</ul>
+<p>Here are important commands to manage images and containers:</p>
+<ul class="simple">
+<li><p>Managing images - <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span></code></p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>docker image pull</p></td>
+<td><p>Pull image</p></td>
+</tr>
+<tr class="row-odd"><td><p>docker image rm</p></td>
+<td><p>Remove image</p></td>
+</tr>
+<tr class="row-even"><td><p>docker image build</p></td>
+<td><p>Build image</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Managing containers - <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span></code></p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>docker container create</p></td>
+<td><p>Create container</p></td>
+</tr>
+<tr class="row-odd"><td><p>docker container start</p></td>
+<td><p>Start container</p></td>
+</tr>
+<tr class="row-even"><td><p>docker container stop</p></td>
+<td><p>Stop  container</p></td>
+</tr>
+<tr class="row-odd"><td><p>docker container restart</p></td>
+<td><p>Restart container</p></td>
+</tr>
+<tr class="row-even"><td><p>docker container rm</p></td>
+<td><p>Remove container</p></td>
+</tr>
+<tr class="row-odd"><td><p>docker container run</p></td>
+<td><p>Build, Create and Start container</p></td>
+</tr>
+<tr class="row-even"><td><p>docker container logs</p></td>
+<td><p>Check logs of docker container</p></td>
+</tr>
+<tr class="row-odd"><td><p>docker container rm</p></td>
+<td><p>Remove stopped container</p></td>
+</tr>
+<tr class="row-even"><td><p>docker container rm -f</p></td>
+<td><p>Stop and Remove running container</p></td>
+</tr>
+<tr class="row-odd"><td><p>docker container ls</p></td>
+<td><p>List containers</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For most of these commonly used commands we have alternative with out image or container as keyword in the command - for example we can say <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rm</span></code> to remove the container and <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rmi</span></code> to remove the image.</p>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker pull postgres
+
+docker container create <span class="se">\</span>
+  --name itv_pg <span class="se">\</span>
+  -p <span class="m">5432</span>:5432 <span class="se">\</span>
+  -h itv_pg <span class="se">\</span>
+  -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>itversity <span class="se">\</span>
+  postgres
+  
+docker container start itv_pg
+
+docker container logs itv_pg
+docker container logs -f itv_pg
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-postgres-using-docker">
+<h2>Setup Postgres using Docker<a class="headerlink" href="#setup-postgres-using-docker" title="Permalink to this headline">¶</a></h2>
+<p>In some cases you might want to have postgres setup on your machine. Let us understand how we can setup Postgres using Docker.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/VF4oAET-GwE?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/VF4oAET-GwE?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>If you are using our labs, the database will be pre-created by us with all the right permissions.</p></li>
+<li><p>If you are using Windows or Mac, ensure that you have installed Docker Desktop.</p></li>
+<li><p>If you are using Ubuntu based desktop, make sure to setup Docker.</p></li>
+<li><p>Here are the steps that can be used to setup Postgres database using Docker.</p>
+<ul>
+<li><p>Pull the postgres image using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span></code></p></li>
+<li><p>Create the container using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">create</span></code>.</p></li>
+<li><p>Start the container using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">start</span></code>.</p></li>
+<li><p>Alternatively we can use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> which will pull, create and start the container.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span></code> or <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">-f</span></code> to review the logs to ensure Postgres Server is up and running.</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker pull postgres
+
+docker container create <span class="se">\</span>
+    --name itv_pg <span class="se">\</span>
+    -p <span class="m">5432</span>:5432 <span class="se">\</span>
+    -h itv_pg <span class="se">\</span>
+    -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>itversity <span class="se">\</span>
+    postgres
+
+docker start itv_pg
+
+docker logs itv_pg
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You can connect to Postgres Database setup using Docker with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> <span class="se">\</span>
+    -it itv_pg <span class="se">\</span>
+    psql -U postgres
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You can also connecto to Postgres directly with out using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>psql -h localhost <span class="se">\</span>
+    -p <span class="m">5433</span> <span class="se">\</span>
+    -d postgres <span class="se">\</span>
+    -U postgres <span class="se">\</span>
+    -W
+</pre></div>
+</div>
+</div>
+<div class="section" id="accessing-postgres-using-docker-cli">
+<h2>Accessing Postgres using Docker CLI<a class="headerlink" href="#accessing-postgres-using-docker-cli" title="Permalink to this headline">¶</a></h2>
+<p>Let us understand how to connect to Postgres Database running as part of docker container using Docker CLI.</p>
+<ul class="simple">
+<li><p>We can use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">exec</span></code> or <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code> to connect to the container.</p></li>
+<li><p>You can attach to the container by running <code class="docutils literal notranslate"><span class="pre">bash</span></code> using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>.</p></li>
+<li><p>Also you can run single commands with out attaching the container - example: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">itv_pg</span> <span class="pre">hostname</span> <span class="pre">-f</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>You have to use terminal to run these commands</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Attach to sms_db container - <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">itv_pg</span> <span class="pre">bash</span></code></p></li>
+<li><p>Run command to get hostname - <code class="docutils literal notranslate"><span class="pre">hostname</span> <span class="pre">-f</span></code></p></li>
+<li><p>Run command to connect to Postgres Database - <code class="docutils literal notranslate"><span class="pre">psql</span> <span class="pre">-U</span> <span class="pre">postgres</span></code></p></li>
+<li><p>You can also directly connect to Postgres Database using</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">itv_pg</span> <span class="n">psql</span> <span class="o">-</span><span class="n">U</span> <span class="n">postgres</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">\q</span></code> to come out of the Postgres CLI.</p></li>
+</ul>
+</div>
+<div class="section" id="create-database-and-user">
+<h2>Create Database and User<a class="headerlink" href="#create-database-and-user" title="Permalink to this headline">¶</a></h2>
+<p>Let us create <strong>database</strong> and <strong>user</strong> using <code class="docutils literal notranslate"><span class="pre">psql</span></code> CLI.</p>
+<ul class="simple">
+<li><p>Postgres is multi tenant database.</p></li>
+<li><p>We typically follow these steps to create a database which can be used by connecting as specific user.</p>
+<ul>
+<li><p>Connect to postgres server as user postgres (super user)</p></li>
+<li><p>Create database - <code class="docutils literal notranslate"><span class="pre">sms_db</span></code></p></li>
+<li><p>Create user with password - <code class="docutils literal notranslate"><span class="pre">sms_user</span></code></p></li>
+<li><p>Grant permissions on database to user</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it itv_pg psql -U postgres
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CREATE DATABASE sms_db;
+CREATE USER sms_user WITH ENCRYPTED PASSWORD &#39;sms_password&#39;;
+GRANT ALL ON DATABASE sms_db TO sms_user;
+
+\l --to list databases
+\q --to quit from postgres CLI
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Make sure to validate by connecting using sms_user.</p></li>
+</ul>
+<blockquote>
+<div><p>When we use psql directly with in the container, you might be able to connect to database even with out password. Don’t worry about it for now.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Connect to postgres using newly created user</p>
+</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it itv_pg psql -U sms_user -d sms_db -W
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>SELECT current_database();
+CREATE TABLE t (i INT);
+INSERT INTO t VALUES (1);
+SELECT * FROM t;
+
+\d
+\d t
+
+DROP TABLE t;
+</pre></div>
+</div>
+</div>
+<div class="section" id="executing-sql-scripts">
+<h2>Executing SQL Scripts<a class="headerlink" href="#executing-sql-scripts" title="Permalink to this headline">¶</a></h2>
+<p>Let us understand how to execute SQL Scripts using psql. We will create new database and then run the scripts which are cloned from GitHub.</p>
+<ul class="simple">
+<li><p>Clone the GitHub repository on to the host.</p></li>
+<li><p>Copy the folder which contain scripts to itv_pg container under root folder <strong>/</strong>.</p></li>
+<li><p>Make sure <strong>retail_db</strong> database and <strong>retail_user</strong> user are created.</p></li>
+<li><p>Run the appropriate scripts to create tables as well as to insert data.</p></li>
+<li><p>Validate that tables are created and data is inserted by running simple queries.</p></li>
+</ul>
+<p><strong>Clone Repository</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure you are in the home directory in the host (not in the container)</span>
+<span class="nb">cd</span> <span class="c1"># to be in home directory</span>
+git clone https://www.github.com/dgadiraju/retail_db.git
+</pre></div>
+</div>
+<p><strong>Copy Script and Validate</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker container cp retail_db itv_pg:/
+
+docker <span class="nb">exec</span> -it itv_pg ls -ltr /retail_db
+
+docker <span class="nb">exec</span> -it itv_pg psql -U postgres
+</pre></div>
+</div>
+<p><strong>Create Database and User for retail_db</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it itv_pg psql -U postgres
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">retail_db</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">USER</span> <span class="n">retail_user</span> <span class="k">WITH</span> <span class="k">ENCRYPTED</span> <span class="n">PASSWORD</span> <span class="s1">&#39;retail_password&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">retail_db</span> <span class="k">TO</span> <span class="n">retail_user</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Create tables and copy data</strong></p>
+<p>We will be running script to create tables and copy data.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker cp ~/retail_db itv_pg:/
+docker <span class="nb">exec</span> -it itv_pg psql -U retail_user -d retail_db -W
+
+<span class="se">\i</span> /retail_db/create_db_tables_pg.sql
+
+<span class="se">\i</span> /retail_db/load_db_tables_pg.sql
+</pre></div>
+</div>
+<p><strong>Validate - Run Queries</strong></p>
+<p>Make sure you are in right database and run these queries.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it itv_pg psql -U retail_user -d retail_db -W
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>\d
+
+\d orders
+
+SELECT * FROM orders LIMIT 10;
+
+SELECT count(1) FROM orders;
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-sql-workbench">
+<h2>Setup SQL Workbench<a class="headerlink" href="#setup-sql-workbench" title="Permalink to this headline">¶</a></h2>
+<p>Let us understand how to setup and use SQL Workbench.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/HafnO2hryP0?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/HafnO2hryP0?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
+<p><strong>Why SQL Workbench</strong></p>
+<p>Let us see the details why we might have to use SQL Workbench.</p>
+<ul class="simple">
+<li><p>Using Database CLIs such as psql for postgres, mysql etc can be cumbersome for those who are not comfortable with command line interfaces.</p></li>
+<li><p>Database IDEs such as SQL Workbench will provide required features to run queries against databases with out worrying to much about underlying data dictionaries.</p></li>
+<li><p>SQL Workbench provide required features to review databases and objects with out writing queries or running database specific commands.</p></li>
+<li><p>Also Database IDEs provide capabilities to preserve the scripts we develop.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>In short Database IDEs such as SQL Workbench improves productivity.</strong></p>
+</div></blockquote>
+<p><strong>Alternative IDEs</strong></p>
+<p>There are several IDEs in the market.</p>
+<ul class="simple">
+<li><p>TOAD</p></li>
+<li><p>SQL Developer for Oracle</p></li>
+<li><p>MySQL Workbench
+and many others</p></li>
+</ul>
+<p><strong>Install SQL Workbench</strong></p>
+<p>Here are the instructions to setup SQL Workbench.</p>
+<ul class="simple">
+<li><p>Download SQL Workbench (typically zip file)</p></li>
+<li><p>Unzip and launch</p></li>
+</ul>
+<p>Once installed we need to perform below steps which will be covered in detail as part of next topic.</p>
+<ul class="simple">
+<li><p>Download JDBC driver for the database we would like to connect.</p></li>
+<li><p>Get the database connectivity information and connect to the database.</p></li>
+</ul>
+</div>
+<div class="section" id="sql-workbench-and-postgres">
+<h2>SQL Workbench and Postgres<a class="headerlink" href="#sql-workbench-and-postgres" title="Permalink to this headline">¶</a></h2>
+<p>Let us connect to Postgres Database using SQL Workbench.</p>
+<ul class="simple">
+<li><p>Download the JDBC Driver</p></li>
+<li><p>Get the database connectivity information</p></li>
+<li><p>Configure the connection using SQL Workbench</p></li>
+<li><p>Validate the connection and save the profile</p></li>
+</ul>
+<div class="section" id="postgres-on-docker">
+<h3>Postgres on Docker<a class="headerlink" href="#postgres-on-docker" title="Permalink to this headline">¶</a></h3>
+<p>Here are the steps to connect to Postgres running as part of Docker container. You can go through the steps of dowloading the JDBC Driver as part of this <a class="reference external" href="https://www.youtube.com/embed/IRRoAphUJmw?rel=0&amp;controls=1&amp;showinfo=0">video</a>. This also covers how to connect to existing remote Postgres databases using SQL Workbench.</p>
+<ul class="simple">
+<li><p>We are trying to connect to Postgres Database that is running as part of Docker container running in a Ubuntu 18.04 VM provisioned from GCP.</p></li>
+<li><p>We have published Postgres database port to port 5432 on Ubuntu 18.04 VM.</p></li>
+<li><p>We typically use ODBC or JDBC to connect to a Database from remote machines (our PC).</p></li>
+<li><p>Here are the pre-requisites to connect to a Database on GCP.</p>
+<ul>
+<li><p>Make sure 5432 port is opened as part of the firewalls.</p></li>
+<li><p>If you have telnet configured on your system on which SQL Workbench is installed, make sure to validate by running telnet command using ip or DNS Alias and port number 5432.</p></li>
+<li><p>Ensure that you have downloaded right JDBC Driver for Postgres.</p></li>
+<li><p>Make sure to have right credentials (username and password).</p></li>
+<li><p>Ensure that you have database created on which the user have permissions.</p></li>
+</ul>
+</li>
+<li><p>You can validate credentials and permissions to the database by installing postgres client on Ubuntu 18.04 VM and then by connecting to the database using the credentials.</p></li>
+<li><p>Once you have all the information required along with JDBC jar, ensure to save the information as part of the profile. You can also validate before saving the details by using <strong>Test</strong> option.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="sql-workbench-features">
+<h2>SQL Workbench Features<a class="headerlink" href="#sql-workbench-features" title="Permalink to this headline">¶</a></h2>
+<p>Here are some of the key features, you have to familiar with related to SQL Workbench.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/7vPJ7TKNQE4?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/7vPJ7TKNQE4?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>Ability to connect to different RDBMS, Data Warehouse and MPP Database servers such as Postgres, MySQL, Oracle, Redshift etc.</p></li>
+<li><p>Saving profiles to connect to multiple databases.</p></li>
+<li><p>Ability to access data dictionary or information schema using wizards to validate tables, columns, sequences, indexes, constraints etc.</p></li>
+<li><p>Generate scripts out of existing data.</p></li>
+<li><p>Ability to manage database objects with out writing any commands. We can drop tables, indexes, sequences etc by right clicking and then selecting drop option.</p></li>
+<li><p>Develop SQL files and preserve them for future usage.</p></li>
+</ul>
+<p>Almost all leading IDEs provide all these features in similar fashion.</p>
+<p><strong>Usage Scenarios</strong></p>
+<p>Here are <strong>some of the usage scenarios</strong> for database IDEs such as SQL Workbench as part of day to day responsibilities.</p>
+<ul class="simple">
+<li><p>Developers for generating and validating data as part of unit testing.</p></li>
+<li><p>Testers to validate data for their test cases.</p></li>
+<li><p>Business Analysts and Data Analysts to run ad hoc queries to understand the data better.</p></li>
+<li><p>Developers to troubleshoot data related to production issues using read only accounts.</p></li>
+</ul>
+</div>
+<div class="section" id="troubleshooting-issues">
+<h2>Troubleshooting Issues<a class="headerlink" href="#troubleshooting-issues" title="Permalink to this headline">¶</a></h2>
+<p>Let us understand how to troubleshoot common database connectivity issues related to Postgres DB.</p>
+<ul class="simple">
+<li><p>We need to have telnet or nc on the machine from which we are trying to connect to database to troubleshoot the issues.</p></li>
+<li><p>Host not reachable - Root causes</p>
+<ul>
+<li><p>Typo in the host</p></li>
+<li><p>Using Private ip instead of public ip</p></li>
+<li><p>Might be blocked by the firewall</p></li>
+</ul>
+</li>
+<li><p>Unable to authenticate - Root causes</p>
+<ul>
+<li><p>Incorrect username or password</p></li>
+<li><p>Incorrect Hostname or Port Number</p></li>
+<li><p>Insufficient privileges for the user over the database</p></li>
+<li><p>Incorrect Database Name</p></li>
+</ul>
+</li>
+<li><p>Here are the following things you need to keep in mind while connecting to database running in docker container created in Ubuntu 18.04 Virtual Machine using GCP.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker container create <span class="se">\</span>
+  --name itv_pg <span class="se">\</span>
+  -p <span class="m">5432</span>:5432 <span class="se">\</span>
+  -h itv_pg <span class="se">\</span>
+  -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>itversity <span class="se">\</span>
+  postgres
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Make sure port number used by Postgres database in the container is published to host. In our example it is 5432. Port 5432 in container is published to port 5432 on the host.</p></li>
+<li><p>Ensure that port is opened in network firewall for the Virtual Machine in GCP using GCP Web Console.</p></li>
+<li><p>If you have <code class="docutils literal notranslate"><span class="pre">telnet</span></code> on your machine from which you are trying to connect on VM in GCP, run <code class="docutils literal notranslate"><span class="pre">telnet</span></code> command by passing public ip of GCP VM and the port 5432.</p></li>
+</ul>
+</div>
+<div class="section" id="jupyter-lab-and-postgresql">
+<h2>Jupyter Lab and Postgresql<a class="headerlink" href="#jupyter-lab-and-postgresql" title="Permalink to this headline">¶</a></h2>
+<p>Let us understand how we can integrate Jupyter Lab and Postgres so that we can leverage intuitive and interactive Jupyter based environment to practice SQL.</p>
+<ul class="simple">
+<li><p>Using Jupyter Lab or Jupyter Notebook is optional. You can leverage SQL Workbench or <code class="docutils literal notranslate"><span class="pre">psql</span></code> to practice. However, using <code class="docutils literal notranslate"><span class="pre">psql</span></code> is a bit tricky and can take away considerable amount of time.</p></li>
+<li><p>We need additional libraries to be setup as part of Jupyter environment for integrating Notebooks with Postgres to write queries with out writing any code. Before getting into setup let us understand the pre-requisites.</p>
+<ul>
+<li><p>You should have Python3 installed.</p></li>
+<li><p>Also you should have setup Jupyter Lab environment by now. If not you can follow our <a class="reference external" href="https://www.youtube.com/playlist?list=PLf0swTFhTI8qOGXb3e6BmqHGQ-tnsP51q">playlist</a> for the same. You will get step by step instructions to setup Jupyter Lab on Ubuntu VM on GCP using Docker.</p></li>
+</ul>
+</li>
+<li><p>Once Jupyter Lab is setup we need to install the following to leverage Jupyter based notebooks to practice SQL.</p>
+<ul>
+<li><p>You need to install <code class="docutils literal notranslate"><span class="pre">ipython-sql</span></code> library using <code class="docutils literal notranslate"><span class="pre">pip</span></code> with in the virtual environment used to setup Jupyter Lab.</p></li>
+<li><p>You also need to install <strong>SQL Alchemy</strong> to facilitate the connectivity between Jupyter Notebooks and the databases. However, it will be installed along with <code class="docutils literal notranslate"><span class="pre">ipython-sql</span></code>. You can run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span></code> to validate whether <strong>SQL Alchemy</strong> is installed or not.</p></li>
+<li><p>Also we need to install <code class="docutils literal notranslate"><span class="pre">psycopg2</span></code> to connect to Postgres database. If you are using Mac to setup Jupyter Lab, you have to install Postgresql using <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">postgresql</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install ipython-sql
+pip list
+brew install postgresql <span class="c1"># On Mac</span>
+pip install psycopg2
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Here are the instructions to setup Postgresql on Ubuntu. You can get latest instructions from this <a class="reference external" href="https://www.postgresql.org/download/linux/ubuntu/">link</a>.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo sh -c <span class="s1">&#39;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span>
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc <span class="p">|</span> sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y install postgresql-common
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Make sure the Postgres database in docker is running fine. If not, start the docker container and then start Jupyter Lab.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker ps -a
+docker start itv_pg
+
+jupyter lab --ip <span class="m">0</span>.0.0.0
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Now it is time for us to connect to Jupyter Lab using browser and validate.</p></li>
+<li><p>Once all the libraries are installed, we need to load sql extension and then create environment variable called as <code class="docutils literal notranslate"><span class="pre">DATABASE_URL</span></code> using all the connectivity information.</p></li>
+<li><p>We can run a query to validate that we are connected to the database.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> sql
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">env</span> DATABASE_URL=postgresql://retail_user:retail_password@localhost:5432/retail_db
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> SELECT current_date()
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="02_setup_ubuntu_vm_on_gcp.html" title="previous page">Overview of GCP and Provision Ubuntu VM</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
