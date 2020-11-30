@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Setup Postgres Database on Ubuntu VM &#8212; My Jupyter Book</title>
+    <title>Setup Postgres Database &#8212; My Jupyter Book</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,7 +55,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Overview of GCP and Provision Ubuntu VM" href="02_setup_ubuntu_vm_on_gcp.html" />
+    <link rel="prev" title="Setup Ubuntu VM on GCP" href="02_setup_ubuntu_vm_on_gcp.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -96,12 +96,12 @@
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="02_setup_ubuntu_vm_on_gcp.html">
-   Overview of GCP and Provision Ubuntu VM
+   Setup Ubuntu VM on GCP
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Setup Postgres Database on Ubuntu VM
+   Setup Postgres Database
   </a>
  </li>
 </ul>
@@ -146,7 +146,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/03_setup_postgres_db.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/03_setup_postgres_database.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -171,7 +171,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03_setup_postgres_db.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03_setup_postgres_database.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -261,8 +261,8 @@
         
               <div>
                 
-  <div class="section" id="setup-postgres-database-on-ubuntu-vm">
-<h1>Setup Postgres Database on Ubuntu VM<a class="headerlink" href="#setup-postgres-database-on-ubuntu-vm" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="setup-postgres-database">
+<h1>Setup Postgres Database<a class="headerlink" href="#setup-postgres-database" title="Permalink to this headline">¶</a></h1>
 <p>Let us understand how to setup Postgres on Ubuntu VM. We will use Docker to set it up.</p>
 <ul class="simple">
 <li><p>Docker - Cheat Sheet</p></li>
@@ -274,7 +274,9 @@
 <li><p>SQL Workbench and Postgres</p></li>
 <li><p>SQL Workbench Features</p></li>
 <li><p>Troubleshooting Issues</p></li>
+<li><p>Jupyter Lab and Postgresql</p></li>
 </ul>
+<p>You can access videos for this course module using <a class="reference external" href="https://www.youtube.com/playlist?list=PLf0swTFhTI8qOGXb3e6BmqHGQ-tnsP51q">Setup labs on Ubuntu 18.04 VM on GCP using Docker to learn Python and SQL</a></p>
 <div class="section" id="docker-cheat-sheet">
 <h2>Docker - Cheat Sheet<a class="headerlink" href="#docker-cheat-sheet" title="Permalink to this headline">¶</a></h2>
 <p>As we have successfully setup Docker on our VM, let us go through some of the important commands related to docker.</p>
@@ -804,7 +806,7 @@ jupyter lab --ip <span class="m">0</span>.0.0.0
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="02_setup_ubuntu_vm_on_gcp.html" title="previous page">Overview of GCP and Provision Ubuntu VM</a>
+    <a class='left-prev' id="prev-link" href="02_setup_ubuntu_vm_on_gcp.html" title="previous page">Setup Ubuntu VM on GCP</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
