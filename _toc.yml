@@ -1,0 +1,4 @@
+- file: setup_jupyterlab
+  sections:
+    - file: 02_setup_ubuntu_vm_on_gcp
+    - file: 03_setup_postgres_db
