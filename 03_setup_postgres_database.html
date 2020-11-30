@@ -214,8 +214,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#executing-sql-scripts">
-   Executing SQL Scripts
+  <a class="reference internal nav-link" href="#execute-sql-scripts">
+   Execute SQL Scripts
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -276,10 +276,20 @@
 <li><p>Troubleshooting Issues</p></li>
 <li><p>Jupyter Lab and Postgresql</p></li>
 </ul>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/bwEUYfkQWRk?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
 <p>You can access videos for this course module using <a class="reference external" href="https://www.youtube.com/playlist?list=PLf0swTFhTI8qOGXb3e6BmqHGQ-tnsP51q">Setup labs on Ubuntu 18.04 VM on GCP using Docker to learn Python and SQL</a></p>
 <div class="section" id="docker-cheat-sheet">
 <h2>Docker - Cheat Sheet<a class="headerlink" href="#docker-cheat-sheet" title="Permalink to this headline">¶</a></h2>
 <p>As we have successfully setup Docker on our VM, let us go through some of the important commands related to docker.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/SFOpsK_LZVQ?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
 <p>Here are the steps involved in setting up Database Services such as Postgres using Docker:</p>
 <ul class="simple">
 <li><p>Pull postgres image</p></li>
@@ -425,7 +435,7 @@ docker logs itv_pg
 <li><p>You can also connecto to Postgres directly with out using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>.</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>psql -h localhost <span class="se">\</span>
-    -p <span class="m">5433</span> <span class="se">\</span>
+    -p <span class="m">5432</span> <span class="se">\</span>
     -d postgres <span class="se">\</span>
     -U postgres <span class="se">\</span>
     -W
@@ -435,6 +445,17 @@ docker logs itv_pg
 <div class="section" id="accessing-postgres-using-docker-cli">
 <h2>Accessing Postgres using Docker CLI<a class="headerlink" href="#accessing-postgres-using-docker-cli" title="Permalink to this headline">¶</a></h2>
 <p>Let us understand how to connect to Postgres Database running as part of docker container using Docker CLI.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/VIEkFUmBp6I?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/VIEkFUmBp6I?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
 <ul class="simple">
 <li><p>We can use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">container</span> <span class="pre">exec</span></code> or <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code> to connect to the container.</p></li>
 <li><p>You can attach to the container by running <code class="docutils literal notranslate"><span class="pre">bash</span></code> using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>.</p></li>
@@ -459,6 +480,17 @@ docker logs itv_pg
 <div class="section" id="create-database-and-user">
 <h2>Create Database and User<a class="headerlink" href="#create-database-and-user" title="Permalink to this headline">¶</a></h2>
 <p>Let us create <strong>database</strong> and <strong>user</strong> using <code class="docutils literal notranslate"><span class="pre">psql</span></code> CLI.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/YRHiZWfvwWc?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/YRHiZWfvwWc?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
 <ul class="simple">
 <li><p>Postgres is multi tenant database.</p></li>
 <li><p>We typically follow these steps to create a database which can be used by connecting as specific user.</p>
@@ -505,9 +537,20 @@ DROP TABLE t;
 </pre></div>
 </div>
 </div>
-<div class="section" id="executing-sql-scripts">
-<h2>Executing SQL Scripts<a class="headerlink" href="#executing-sql-scripts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="execute-sql-scripts">
+<h2>Execute SQL Scripts<a class="headerlink" href="#execute-sql-scripts" title="Permalink to this headline">¶</a></h2>
 <p>Let us understand how to execute SQL Scripts using psql. We will create new database and then run the scripts which are cloned from GitHub.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/C4aGtLCiOAY?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/C4aGtLCiOAY?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
 <ul class="simple">
 <li><p>Clone the GitHub repository on to the host.</p></li>
 <li><p>Copy the folder which contain scripts to itv_pg container under root folder <strong>/</strong>.</p></li>
@@ -611,6 +654,17 @@ and many others</p></li>
 <div class="section" id="sql-workbench-and-postgres">
 <h2>SQL Workbench and Postgres<a class="headerlink" href="#sql-workbench-and-postgres" title="Permalink to this headline">¶</a></h2>
 <p>Let us connect to Postgres Database using SQL Workbench.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/Cz2FHb0ElYA?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/Cz2FHb0ElYA?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
 <ul class="simple">
 <li><p>Download the JDBC Driver</p></li>
 <li><p>Get the database connectivity information</p></li>
@@ -709,6 +763,17 @@ and many others</p></li>
 <div class="section" id="jupyter-lab-and-postgresql">
 <h2>Jupyter Lab and Postgresql<a class="headerlink" href="#jupyter-lab-and-postgresql" title="Permalink to this headline">¶</a></h2>
 <p>Let us understand how we can integrate Jupyter Lab and Postgres so that we can leverage intuitive and interactive Jupyter based environment to practice SQL.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/VwMBG1pmzxk?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/VwMBG1pmzxk?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
 <ul class="simple">
 <li><p>Using Jupyter Lab or Jupyter Notebook is optional. You can leverage SQL Workbench or <code class="docutils literal notranslate"><span class="pre">psql</span></code> to practice. However, using <code class="docutils literal notranslate"><span class="pre">psql</span></code> is a bit tricky and can take away considerable amount of time.</p></li>
 <li><p>We need additional libraries to be setup as part of Jupyter environment for integrating Notebooks with Postgres to write queries with out writing any code. Before getting into setup let us understand the pre-requisites.</p>
