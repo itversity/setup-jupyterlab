@@ -1,4 +1,25 @@
 - file: setup_jupyterlab
+
+- file: 02_setup_ubuntu_vm_on_gcp/01_setup_ubuntu_vm_on_gcp
   sections:
-    - file: 02_setup_ubuntu_vm_on_gcp
-    - file: 03_setup_postgres_database
+    - file: 02_setup_ubuntu_vm_on_gcp/02_signing_up_for_gcp
+    - file: 02_setup_ubuntu_vm_on_gcp/03_understanding_gcp_web_console
+    - file: 02_setup_ubuntu_vm_on_gcp/04_overview_of_gcp_pricing
+    - file: 02_setup_ubuntu_vm_on_gcp/05_provision_ubuntu_18.04_vm
+    - file: 02_setup_ubuntu_vm_on_gcp/06_setup_docker
+    - file: 02_setup_ubuntu_vm_on_gcp/07_validating_python
+    - file: 02_setup_ubuntu_vm_on_gcp/08_setup_jupyter_lab
+
+- file: 03_setup_postgres_database/01_setup_postgres_database
+  sections:
+      - file: 03_setup_postgres_database/02_docker_cheet_sheet
+      - file: 03_setup_postgres_database/03_setup_postgres_using_docker
+      - file: 03_setup_postgres_database/04_accessing_postgres_using_docker_cli
+      - file: 03_setup_postgres_database/05_create_database_and_user
+      - file: 03_setup_postgres_database/06_execute_sql_scripts
+      - file: 03_setup_postgres_database/07_setup_sql_workbench
+      - file: 03_setup_postgres_database/08_sql_workbench_and_postgres
+      - file: 03_setup_postgres_database/09_sql_workbench_features
+      - file: 03_setup_postgres_database/10_jupyter_lab_and_postgresql
+
+
