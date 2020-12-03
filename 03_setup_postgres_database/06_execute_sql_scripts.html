@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Execute SQL Scripts &#8212; My Jupyter Book</title>
+    
+  <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setup SQL Workbench" href="07_setup_sql_workbench.html" />
+    <link rel="prev" title="Create Database and User" href="05_create_database_and_user.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">My Jupyter Book</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../setup_jupyterlab.html">
+   Setup Jupyter Lab
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02_setup_ubuntu_vm_on_gcp/01_setup_ubuntu_vm_on_gcp.html">
+   Setup Ubuntu VM on GCP
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="01_setup_postgres_database.html">
+   Setup Postgres Database
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_docker_cheet_sheet.html">
+     Docker - Cheat Sheet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_setup_postgres_using_docker.html">
+     Setup Postgres using Docker
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_accessing_postgres_using_docker_cli.html">
+     Accessing Postgres using Docker CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_create_database_and_user.html">
+     Create Database and User
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Execute SQL Scripts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_setup_sql_workbench.html">
+     Setup SQL Workbench
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_sql_workbench_and_postgres.html">
+     SQL Workbench and Postgres
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09_sql_workbench_features.html">
+     SQL Workbench Features
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09_sql_workbench_features.html#troubleshooting-issues">
+     Troubleshooting Issues
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_jupyter_lab_and_postgresql.html">
+     Jupyter Lab and Postgresql
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/03_setup_postgres_database/06_execute_sql_scripts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03_setup_postgres_database/06_execute_sql_scripts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="execute-sql-scripts">
+<h1>Execute SQL Scripts<a class="headerlink" href="#execute-sql-scripts" title="Permalink to this headline">¶</a></h1>
+<p>Let us understand how to execute SQL Scripts using psql. We will create new database and then run the scripts which are cloned from GitHub.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/C4aGtLCiOAY?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/C4aGtLCiOAY?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+</div></div>
+</div>
+<ul class="simple">
+<li><p>Clone the GitHub repository on to the host.</p></li>
+<li><p>Copy the folder which contain scripts to itv_pg container under root folder <strong>/</strong>.</p></li>
+<li><p>Make sure <strong>retail_db</strong> database and <strong>retail_user</strong> user are created.</p></li>
+<li><p>Run the appropriate scripts to create tables as well as to insert data.</p></li>
+<li><p>Validate that tables are created and data is inserted by running simple queries.</p></li>
+</ul>
+<p><strong>Clone Repository</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make sure you are in the home directory in the host (not in the container)</span>
+<span class="nb">cd</span> <span class="c1"># to be in home directory</span>
+git clone https://www.github.com/dgadiraju/retail_db.git
+</pre></div>
+</div>
+<p><strong>Copy Script and Validate</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker container cp retail_db itv_pg:/
+
+docker <span class="nb">exec</span> -it itv_pg ls -ltr /retail_db
+
+docker <span class="nb">exec</span> -it itv_pg psql -U postgres
+</pre></div>
+</div>
+<p><strong>Create Database and User for retail_db</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it itv_pg psql -U postgres
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">retail_db</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">USER</span> <span class="n">retail_user</span> <span class="k">WITH</span> <span class="k">ENCRYPTED</span> <span class="n">PASSWORD</span> <span class="s1">&#39;retail_password&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">ON</span> <span class="k">DATABASE</span> <span class="n">retail_db</span> <span class="k">TO</span> <span class="n">retail_user</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Create tables and copy data</strong></p>
+<p>We will be running script to create tables and copy data.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker cp ~/retail_db itv_pg:/
+docker <span class="nb">exec</span> -it itv_pg psql -U retail_user -d retail_db -W
+
+<span class="se">\i</span> /retail_db/create_db_tables_pg.sql
+
+<span class="se">\i</span> /retail_db/load_db_tables_pg.sql
+</pre></div>
+</div>
+<p><strong>Validate - Run Queries</strong></p>
+<p>Make sure you are in right database and run these queries.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it itv_pg psql -U retail_user -d retail_db -W
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>\d
+
+\d orders
+
+SELECT * FROM orders LIMIT 10;
+
+SELECT count(1) FROM orders;
+</pre></div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./03_setup_postgres_database"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="05_create_database_and_user.html" title="previous page">Create Database and User</a>
+    <a class='right-next' id="next-link" href="07_setup_sql_workbench.html" title="next page">Setup SQL Workbench</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
