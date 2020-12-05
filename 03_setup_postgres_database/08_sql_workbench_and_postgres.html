@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Postgres on Docker &#8212; My Jupyter Book</title>
+    <title>SQL Workbench and Postgres &#8212; My Jupyter Book</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -137,12 +137,17 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Postgres on Docker
+     SQL Workbench and Postgres
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="09_sql_workbench_features.html">
      Troubleshooting Issues
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_jupyter_lab_and_postgresql.html">
+     Jupyter Lab and Postgresql
     </a>
    </li>
   </ul>
@@ -231,6 +236,20 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#postgres-on-docker">
+   Postgres on Docker
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -238,17 +257,9 @@
         
               <div>
                 
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
-<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/Cz2FHb0ElYA?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/Cz2FHb0ElYA?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-</div></div>
-</div>
+  <div class="section" id="sql-workbench-and-postgres">
+<h1>SQL Workbench and Postgres<a class="headerlink" href="#sql-workbench-and-postgres" title="Permalink to this headline">¶</a></h1>
+<p>Let us connect to Postgres Database using SQL Workbench.</p>
 <ul class="simple">
 <li><p>Download the JDBC Driver</p></li>
 <li><p>Get the database connectivity information</p></li>
@@ -256,7 +267,7 @@
 <li><p>Validate the connection and save the profile</p></li>
 </ul>
 <div class="section" id="postgres-on-docker">
-<h1>Postgres on Docker<a class="headerlink" href="#postgres-on-docker" title="Permalink to this headline">¶</a></h1>
+<h2>Postgres on Docker<a class="headerlink" href="#postgres-on-docker" title="Permalink to this headline">¶</a></h2>
 <p>Here are the steps to connect to Postgres running as part of Docker container. You can go through the steps of dowloading the JDBC Driver as part of this <a class="reference external" href="https://www.youtube.com/embed/IRRoAphUJmw?rel=0&amp;controls=1&amp;showinfo=0">video</a>. This also covers how to connect to existing remote Postgres databases using SQL Workbench.</p>
 <ul class="simple">
 <li><p>We are trying to connect to Postgres Database that is running as part of Docker container running in a Ubuntu 18.04 VM provisioned from GCP.</p></li>
@@ -274,6 +285,7 @@
 <li><p>You can validate credentials and permissions to the database by installing postgres client on Ubuntu 18.04 VM and then by connecting to the database using the credentials.</p></li>
 <li><p>Once you have all the information required along with JDBC jar, ensure to save the information as part of the profile. You can also validate before saving the details by using <strong>Test</strong> option.</p></li>
 </ul>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
