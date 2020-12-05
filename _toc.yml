@@ -12,7 +12,7 @@
 
 - file: 03_setup_postgres_database/01_setup_postgres_database
   sections:
-      - file: 03_setup_postgres_database/02_docker_cheet_sheet
+      - file: 03_setup_postgres_database/02_docker_cheat_sheet
       - file: 03_setup_postgres_database/03_setup_postgres_using_docker
       - file: 03_setup_postgres_database/04_accessing_postgres_using_docker_cli
       - file: 03_setup_postgres_database/05_create_database_and_user
