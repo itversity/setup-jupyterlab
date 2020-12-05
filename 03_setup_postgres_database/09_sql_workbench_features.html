@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Troubleshooting Issues &#8212; My Jupyter Book</title>
+    <title>SQL Workbench Features &#8212; My Jupyter Book</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -142,7 +142,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Troubleshooting Issues
+     SQL Workbench Features
     </a>
    </li>
    <li class="toctree-l2">
@@ -243,17 +243,9 @@
         
               <div>
                 
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
-<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;560&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;315&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube.com/embed/7vPJ7TKNQE4?rel=0&amp;amp;controls=1&amp;amp;showinfo=0&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><iframe width="560" height="315" src="https://www.youtube.com/embed/7vPJ7TKNQE4?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-</div></div>
-</div>
+  <div class="section" id="sql-workbench-features">
+<h1>SQL Workbench Features<a class="headerlink" href="#sql-workbench-features" title="Permalink to this headline">¶</a></h1>
+<p>Here are some of the key features, you have to familiar with related to SQL Workbench.</p>
 <ul class="simple">
 <li><p>Ability to connect to different RDBMS, Data Warehouse and MPP Database servers such as Postgres, MySQL, Oracle, Redshift etc.</p></li>
 <li><p>Saving profiles to connect to multiple databases.</p></li>
@@ -270,41 +262,6 @@
 <li><p>Testers to validate data for their test cases.</p></li>
 <li><p>Business Analysts and Data Analysts to run ad hoc queries to understand the data better.</p></li>
 <li><p>Developers to troubleshoot data related to production issues using read only accounts.</p></li>
-</ul>
-<div class="section" id="troubleshooting-issues">
-<h1>Troubleshooting Issues<a class="headerlink" href="#troubleshooting-issues" title="Permalink to this headline">¶</a></h1>
-<p>Let us understand how to troubleshoot common database connectivity issues related to Postgres DB.</p>
-<ul class="simple">
-<li><p>We need to have telnet or nc on the machine from which we are trying to connect to database to troubleshoot the issues.</p></li>
-<li><p>Host not reachable - Root causes</p>
-<ul>
-<li><p>Typo in the host</p></li>
-<li><p>Using Private ip instead of public ip</p></li>
-<li><p>Might be blocked by the firewall</p></li>
-</ul>
-</li>
-<li><p>Unable to authenticate - Root causes</p>
-<ul>
-<li><p>Incorrect username or password</p></li>
-<li><p>Incorrect Hostname or Port Number</p></li>
-<li><p>Insufficient privileges for the user over the database</p></li>
-<li><p>Incorrect Database Name</p></li>
-</ul>
-</li>
-<li><p>Here are the following things you need to keep in mind while connecting to database running in docker container created in Ubuntu 18.04 Virtual Machine using GCP.</p></li>
-</ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker container create <span class="se">\</span>
-  --name itv_pg <span class="se">\</span>
-  -p <span class="m">5432</span>:5432 <span class="se">\</span>
-  -h itv_pg <span class="se">\</span>
-  -e <span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>itversity <span class="se">\</span>
-  postgres
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Make sure port number used by Postgres database in the container is published to host. In our example it is 5432. Port 5432 in container is published to port 5432 on the host.</p></li>
-<li><p>Ensure that port is opened in network firewall for the Virtual Machine in GCP using GCP Web Console.</p></li>
-<li><p>If you have <code class="docutils literal notranslate"><span class="pre">telnet</span></code> on your machine from which you are trying to connect on VM in GCP, run <code class="docutils literal notranslate"><span class="pre">telnet</span></code> command by passing public ip of GCP VM and the port 5432.</p></li>
 </ul>
 </div>
 
