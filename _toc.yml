@@ -21,3 +21,4 @@
       - file: 03_setup_postgres_database/08_sql_workbench_and_postgres
       - file: 03_setup_postgres_database/09_sql_workbench_features
       - file: 03_setup_postgres_database/11_jupyter_lab_and_postgresql
+      - file: 03_setup_postgres_database/12_jupyter_lab_and_postgresql_on_ubuntu_vm
