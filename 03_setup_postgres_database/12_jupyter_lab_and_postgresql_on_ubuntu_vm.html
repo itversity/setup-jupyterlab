@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jupyter Lab and Postgresql &#8212; My Jupyter Book</title>
+    <title>Jupyter Lab and Postgresql on Ubuntu VM &#8212; My Jupyter Book</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Jupyter Lab and Postgresql on Ubuntu VM" href="12_jupyter_lab_and_postgresql_on_ubuntu_vm.html" />
-    <link rel="prev" title="SQL Workbench Features" href="09_sql_workbench_features.html" />
+    <link rel="prev" title="Jupyter Lab and Postgresql" href="11_jupyter_lab_and_postgresql.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -145,13 +144,13 @@
      SQL Workbench Features
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="11_jupyter_lab_and_postgresql.html">
      Jupyter Lab and Postgresql
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="12_jupyter_lab_and_postgresql_on_ubuntu_vm.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Jupyter Lab and Postgresql on Ubuntu VM
     </a>
    </li>
@@ -199,7 +198,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/03_setup_postgres_database/11_jupyter_lab_and_postgresql.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/03_setup_postgres_database/12_jupyter_lab_and_postgresql_on_ubuntu_vm.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -224,7 +223,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03_setup_postgres_database/11_jupyter_lab_and_postgresql.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/03_setup_postgres_database/12_jupyter_lab_and_postgresql_on_ubuntu_vm.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -248,9 +247,9 @@
         
               <div>
                 
-  <div class="section" id="jupyter-lab-and-postgresql">
-<h1>Jupyter Lab and Postgresql<a class="headerlink" href="#jupyter-lab-and-postgresql" title="Permalink to this headline">¶</a></h1>
-<p>Let us understand how we can integrate Jupyter Lab and Postgres so that we can leverage intuitive and interactive Jupyter based environment to practice SQL.</p>
+  <div class="section" id="jupyter-lab-and-postgresql-on-ubuntu-vm">
+<h1>Jupyter Lab and Postgresql on Ubuntu VM<a class="headerlink" href="#jupyter-lab-and-postgresql-on-ubuntu-vm" title="Permalink to this headline">¶</a></h1>
+<p>Let us go through the steps related to integrating Jupyter Lab with Postgresql on Ubuntu VM.</p>
 <ul class="simple">
 <li><p>Using Jupyter Lab or Jupyter Notebook is optional. You can leverage SQL Workbench or <code class="docutils literal notranslate"><span class="pre">psql</span></code> to practice. However, using <code class="docutils literal notranslate"><span class="pre">psql</span></code> is a bit tricky and can take away considerable amount of time.</p></li>
 <li><p>We need additional libraries to be setup as part of Jupyter environment for integrating Notebooks with Postgres to write queries with out writing any code. Before getting into setup let us understand the pre-requisites.</p>
@@ -262,33 +261,61 @@
 <li><p>Once Jupyter Lab is setup we need to install the following to leverage Jupyter based notebooks to practice SQL.</p>
 <ul>
 <li><p>You need to install <code class="docutils literal notranslate"><span class="pre">ipython-sql</span></code> library using <code class="docutils literal notranslate"><span class="pre">pip</span></code> with in the virtual environment used to setup Jupyter Lab.</p></li>
-<li><p>You also need to install <strong>SQL Alchemy</strong> to facilitate the connectivity between Jupyter Notebooks and the databases. However, it will be installed along with <code class="docutils literal notranslate"><span class="pre">ipython-sql</span></code>. You can run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span></code> to validate whether <strong>SQL Alchemy</strong> is installed or not.</p></li>
-<li><p>Also we need to install <code class="docutils literal notranslate"><span class="pre">psycopg2</span></code> to connect to Postgres database. If you are using Mac to setup Jupyter Lab, you have to install Postgresql using <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">postgresql</span></code>.</p></li>
+<li><p>Activate the virtual environment.</p></li>
 </ul>
 </li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install ipython-sql
-pip list
-brew install postgresql <span class="c1"># On Mac</span>
-pip install psycopg2
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> delab
+<span class="nb">source</span> delab-venv/bin/activate
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Here are the instructions to setup Postgresql on Ubuntu. You can get latest instructions from this <a class="reference external" href="https://www.postgresql.org/download/linux/ubuntu/">link</a>.</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo sh -c <span class="s1">&#39;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span>
+
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc <span class="p">|</span> sudo apt-key add -
+
 sudo apt-get update
 sudo apt-get -y install postgresql-common
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Make sure the Postgres database in docker is running fine. If not, start the docker container and then start Jupyter Lab.</p></li>
+<li><p>You also need to install <strong>SQL Alchemy</strong> to facilitate the connectivity between Jupyter Notebooks and the databases. However, it will be installed along with <code class="docutils literal notranslate"><span class="pre">ipython-sql</span></code>. You can run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span></code> to validate whether <strong>SQL Alchemy</strong> is installed or not.</p>
+<ul>
+<li><p>Also we need to install <code class="docutils literal notranslate"><span class="pre">psycopg2</span></code> to connect to Postgres database.</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip install ipython-sql
+pip list
+pip install psycopg2-binary
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Make sure the Postgres database in docker is running fine. If not, start the docker container.</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker ps -a
 docker start itv_pg
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Let us also create a demo database to validate the connectivity.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it itv_pg psql -U postgres
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CREATE DATABASE demo_db;
+CREATE USER demo_user WITH ENCRYPTED PASSWORD &#39;demo_password&#39;;
+GRANT ALL ON DATABASE demo_db TO demo_user;
 
-jupyter lab --ip <span class="m">0</span>.0.0.0
+\q
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start jupyter lab.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">lab</span> <span class="o">--</span><span class="n">ip</span> <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -305,14 +332,14 @@ jupyter lab --ip <span class="m">0</span>.0.0.0
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">env</span> DATABASE_URL=postgresql://retail_user:retail_password@localhost:5432/retail_db
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">env</span> DATABASE_URL=postgresql://demo_user:demo_password@localhost:5432/demo_db
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> SELECT current_date()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">sql</span> SELECT current_date
 </pre></div>
 </div>
 </div>
@@ -347,8 +374,7 @@ jupyter lab --ip <span class="m">0</span>.0.0.0
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="09_sql_workbench_features.html" title="previous page">SQL Workbench Features</a>
-    <a class='right-next' id="next-link" href="12_jupyter_lab_and_postgresql_on_ubuntu_vm.html" title="next page">Jupyter Lab and Postgresql on Ubuntu VM</a>
+    <a class='left-prev' id="prev-link" href="11_jupyter_lab_and_postgresql.html" title="previous page">Jupyter Lab and Postgresql</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
