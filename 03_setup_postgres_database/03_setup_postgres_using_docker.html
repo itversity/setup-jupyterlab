@@ -288,7 +288,7 @@ docker logs itv_pg
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>You can also connecto to Postgres directly with out using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>.</p></li>
+<li><p>You can also connecto to Postgres directly with out using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span></code>, provided you have Postgres client setup on the host from which you are trying to connect to Postgres database. Don’t worry too much if the below command doesn’t work at this time.</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>psql -h localhost <span class="se">\</span>
     -p <span class="m">5432</span> <span class="se">\</span>
